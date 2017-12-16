@@ -47,6 +47,7 @@ class AdminClientView(LoginRequiredMixin, ListView):
         context = super(AdminClientView, self).get_context_data(**kwargs)
         try:
             context['client'] = Client.objects.get(id=int(self.kwargs.get('id')))
+            context['msg'] = self.request.GET.get('msg', '')
         except ObjectDoesNotExist:
             try:
                 context['client'] = Client.objects.get(user=self.request.user)
@@ -123,7 +124,7 @@ class AdminCreateClientView(LoginRequiredMixin, generic.View):
         # send login details to client
         email_login_details(client.user.email, password, client.user.username, client.user.first_name)
         # redirect to view of client
-        return redirect(reverse('client_view', kwargs={'id': client.id}) + '?new=1')
+        return redirect(reverse('client_view', kwargs={'id': client.id}) + "?msg=Credentials sent to client's email")
 
 
 class AdminChargeClientView(LoginRequiredMixin, generic.View):

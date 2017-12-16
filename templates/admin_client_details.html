@@ -3,6 +3,11 @@
 {% block body %}
 
     <section class="jumbotron" style="background-color: transparent">
+    {% if not msg == '' %}
+        <div class="alert alert-info">
+            <strong>NB!</strong> {{ msg }}
+        </div>
+    {% endif %}
 
         <div class="inner cover">
             <h1 class="cover-heading">{{ client.user.first_name }}</h1>
