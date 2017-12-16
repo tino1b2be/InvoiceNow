@@ -3,11 +3,14 @@ import uuid
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.views import generic
 from django.views.generic import ListView
 
+from InvoiceNow.settings import EMAIL_ORIGIN
 from invoice_admin.forms import NewClientForm, ChargeClientForm
 from invoice_client.models import Client, Work
 
@@ -57,6 +60,15 @@ class AdminClientView(LoginRequiredMixin, ListView):
         if not self.request.user.is_staff:
             return redirect(reverse('client'))
         return super(AdminClientView, self).get(*args, **kwargs)
+
+
+def email_login_details(email, password, username, client_name):
+    subject = 'Credentials for %s' % client_name
+    from_email = EMAIL_ORIGIN
+    text_content = 'Username: %s\nPassword: %s\n' % (username, password)
+    destination = [email, EMAIL_ORIGIN]
+    msg = EmailMultiAlternatives(subject, text_content, from_email, destination)
+    return msg.send()
 
 
 class AdminCreateClientView(LoginRequiredMixin, generic.View):
@@ -109,7 +121,7 @@ class AdminCreateClientView(LoginRequiredMixin, generic.View):
         client_user.save()
 
         # send login details to client
-
+        email_login_details(client.user.email, password, client.user.username, client.user.first_name)
         # redirect to view of client
         return redirect(reverse('client_view', kwargs={'id': client.id}) + '?new=1')
 

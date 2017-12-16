@@ -81,7 +81,7 @@ class EmailInvoiceView(LoginRequiredMixin, generic.View):
 
         html_content = render_to_string('invoice_pdf_template.html', template_data)
         text_content = strip_tags(html_content)  # this strips the html, so people will have the text as well.
-        destination =[ client.user.email, 'ttchemvura@gmail.com']
+        destination =[ client.user.email, EMAIL_ORIGIN]
 
         # create the email, and attach the HTML version as well.
         msg = EmailMultiAlternatives(subject, text_content, from_email, destination)
