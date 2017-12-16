@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Invoice</title>
+        {% load static %}
+		<link rel="stylesheet" href="{% static 'css/invoice.css' %}">
+		<link rel="license" href="https://www.opensource.org/licenses/mit-license/">
+{#		<script src="{% static 'js/invoice.js' %}"></script>#}
+	</head>
+	<body>
+		<header>
+			<h1>Invoice</h1>
+			<address>
+				<p>Tinotenda Chemvura</p>
+				<p>Greenside, Mutare<br>Mutare</p>
+				<p>ttchemvura@gmail.com</p>
+				<p>0774 152 027</p>
+			</address>
+			<span><img alt="" width="200", height="200" src="{% static 'img/Logo-B-black-1x1.png' %}"><input type="file" accept="image/*"></span>
+		</header>
+		<article>
+			<h1>Recipient</h1>
+			<address>
+				<p>
+                    {{ client.user.first_name }}
+                    <br>
+                    {{ client.address }}
+                    <br>
+                    {{ client.email }}
+                </p>
+			</address>
+			<table class="meta">
+				<tr>
+					<th>Invoice #</th>
+					<td>{{ client.id }}</td>
+				</tr>
+				<tr>
+					<th>Date</th>
+					<td>{{ date }}</td>
+				</tr>
+				<tr>
+					<th>Amount Due</th>
+					<td><span id="prefix">$</span><span>{{ amount_due|floatformat:2 }}</span></td>
+				</tr>
+			</table>
+			<table class="inventory">
+				<thead>
+					<tr>
+						<th>Work ID</th>
+						<th>Description</th>
+						<th>Fee</th>
+					</tr>
+				</thead>
+				<tbody>
+
+                {% for work in works %}
+					<tr>
+						<td>{{ work.id }}</td>
+						<td>{{ work.description }}</td>
+						<td><span data-prefix>$</span>{{ work.fee|floatformat:2 }}</td>
+					</tr>
+                {% endfor %}
+
+				</tbody>
+			</table>
+			<table class="balance">
+				<tr>
+					<th>Total</th>
+					<td><span data-prefix>$</span><span>{{ total|floatformat:2  }}</span></td>
+				</tr>
+				<tr>
+					<th>Tax</th>
+					<td><span data-prefix>$</span>{{ tax|floatformat:2 }}</td>
+				</tr>
+				<tr>
+					<th>Balance Due</th>
+					<td><span data-prefix>$</span><span>{{ amount_due|floatformat:2 }}</span></td>
+				</tr>
+			</table>
+		</article>
+		<aside>
+			<h1>Additional Notes</h1>
+			<div>
+				<p>Balance must be paid within 30 days after the billing date (i.e by {{ due_date }})</p>
+			</div>
+		</aside>
+    <script type="text/javascript">
+        window.print()
+    </script>
+	</body>
+</html>

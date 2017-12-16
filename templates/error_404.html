@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Error 404{% endblock %}
+
+{% block body %}
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">404</h1>
+        <p class="lead">The resource you have asked for does not exist.</p>
+        <p class="lead">
+            <a href="{% url 'home' %}" class="btn btn-lg btn-secondary">Go Home</a>
+        </p>
+    </main>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    {% if not message == '' %}
+        <div class="alert alert-danger">
+            <strong>Error!</strong> {{ message }}
+        </div>
+    {% endif %}
+    {% crispy form %}
+{% endblock %}

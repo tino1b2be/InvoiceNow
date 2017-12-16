@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <section class="jumbotron" style="background-color: transparent">
+
+        <div class="inner cover">
+            <h1 class="cover-heading">{{ client.user.first_name }}</h1>
+            <p class="lead">{{ client.user.email }}</p>
+            <p class="lead">{{ client.address }}</p>
+{#            <p class="lead">#}
+{#                <a href="{% url 'admin_charge'%}?id={{ client.id }}" class="btn btn-sm btn-primary">Charge Client</a>#}
+{#            </p>#}
+            <p class="lead">
+                <a href="{% url 'print_invoice' client.id %}" class="btn btn-sm btn-primary">Print Invoice</a>
+                <a href="{% url 'email_invoice' client.id %}" class="btn btn-sm btn-primary">Email Invoice</a>
+            </p>
+            {% if user.is_staff %}
+            <p class="lead">
+                <a href="{% url 'admin_delete_client' client.id %}" style="background-color: red; color: white" class="btn btn-lg btn-secondary">Delete Client</a>
+            </p>
+            {% endif %}
+        </div>
+
+    </section> {# end of admin buttons section #}
+
+    <h2>Work Done for Client</h2>
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Work ID</th>
+                <th>Description</th>
+                <th>Cost</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for work in works %}
+                <tr>
+                    <td>{{ work.id }}</td>
+                    <td>{{ work.description }}</td>
+                    <td>{{ work.fee }}</td>
+                    <td>{{ work.date }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div> {# End of table div #}
+
+{% endblock %}

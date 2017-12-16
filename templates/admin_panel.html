@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Admin Panel</h1>
+    <section class="jumbotron" style="background-color: transparent">
+
+        <a href="{% url 'admin_create' %}" class="btn btn-primary btn-lg btn-block" role="button" >Create Client</a>
+        <a href="{% url 'admin_charge' %}" class="btn btn-secondary btn-lg btn-block" role="button" >Charge Client</a>
+
+    </section> {# end of admin buttons section #}
+    <h2>Clients</h2>
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Client ID</th>
+                <th>Client Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td><a href="{% url 'client_view' client.id %}">{{ client.id }}</a></td>
+                    <td><a href="{% url 'client_view' client.id %}">{{ client.user.first_name }}</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if is_paginated %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+    </div> {# End of table div #}
+
+{% endblock %}
