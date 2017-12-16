@@ -23,7 +23,7 @@ class AdminListView(LoginRequiredMixin, ListView):
     queryset = Client.objects.all()
 
     def get(self, *args, **kwargs):
-        if not self.request.user.is_admin:
+        if not self.request.user.is_staff:
             return redirect(reverse('client'))
         return super(AdminListView, self).get(*args, **kwargs)
 
@@ -54,7 +54,7 @@ class AdminClientView(LoginRequiredMixin, ListView):
         return context
 
     def get(self, *args, **kwargs):
-        if not self.request.user.is_admin:
+        if not self.request.user.is_staff:
             return redirect(reverse('client'))
         return super(AdminClientView, self).get(*args, **kwargs)
 
