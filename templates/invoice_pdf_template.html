@@ -89,7 +89,7 @@
         <p>Balance must be paid within 30 days after the billing date (i.e by {{ due_date }})</p>
     </div>
 </aside>
-{% if email %}
+{% if not email %}
     <script type="text/javascript">
         window.print()
     </script>
