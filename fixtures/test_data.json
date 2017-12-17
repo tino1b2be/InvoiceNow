@@ -1,0 +1,244 @@
+[
+  {
+    "model": "invoice_client.work",
+    "pk": 1,
+    "fields": {
+      "client": 1,
+      "description": "Build Website",
+      "fee": 1400000.0,
+      "date": "2017-12-15T13:12:01.329Z"
+    }
+  },
+  {
+    "model": "invoice_client.work",
+    "pk": 2,
+    "fields": {
+      "client": 1,
+      "description": "Testing",
+      "fee": 300.5,
+      "date": "2017-12-15T13:20:57.607Z"
+    }
+  },
+  {
+    "model": "invoice_client.work",
+    "pk": 3,
+    "fields": {
+      "client": 8,
+      "description": "Car Import",
+      "fee": 12000.0,
+      "date": "2017-12-17T10:35:04.254Z"
+    }
+  },
+  {
+    "model": "invoice_client.work",
+    "pk": 4,
+    "fields": {
+      "client": 8,
+      "description": "Arbitration",
+      "fee": 500.0,
+      "date": "2017-12-17T10:36:10.361Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$cHoJQ8Jyawca$ln9SxyFTpcMzP+4Jua7G5/ZF4ogi3g2EE8guW299NAY=",
+      "last_login": "2017-12-17T10:07:20.730Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2017-12-15T07:12:04.567Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$Xu0Jw81norAk$EqsVlO9QICs42KR+74d03WSgKTe7wige24UHgm7fF+o=",
+      "last_login": "2017-12-17T09:47:18.321Z",
+      "is_superuser": false,
+      "username": "client_1",
+      "first_name": "Tino",
+      "last_name": "",
+      "email": "ttchemvura@outlook.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-12-15T11:29:37.686Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$sri909vii74o$aKwaOxB1BgaZnge8DX4Uladi4l93+kLgGRRC3RR3MuE=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "client_2",
+      "first_name": "Ano",
+      "last_name": "",
+      "email": "ttchemvura@outlook.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-12-15T11:31:53.503Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$mw41pLnxF7xS$negmVGkQ230zxF/mgWBzaQPmnuqzVLNOJIqfpcnEvvY=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "client_3",
+      "first_name": "Tanya",
+      "last_name": "",
+      "email": "ttchemvura@outlook.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-12-15T11:33:20.519Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$zf3g7nOnWIuA$Om1OFr/PkEe3GcNpY7DherA4v3Ds3MyoFP79g8Eq1S4=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "client_4",
+      "first_name": "Hazel",
+      "last_name": "",
+      "email": "test@test.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-12-16T08:17:14.731Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$NHKQIaF6FXJu$z3DW59VnF5VHfcNvsQ7Oxp8i5a5YR1+FYCCSOy3fcUA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "client_5",
+      "first_name": "Test",
+      "last_name": "",
+      "email": "test@test.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-12-16T09:21:39.636Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$jFm2ApC0zAA2$ANeHt6JuuTdMuRol9gKxC3NsUw3RlAiyKJe3AVITDYk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "client_6",
+      "first_name": "Test",
+      "last_name": "",
+      "email": "ttchemvura@outlook.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-12-16T12:18:22.705Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$8rfF2s9gbKbI$GF8scEZP894y2IvjkAFzWimYUO7+Aq4OHcc0bVGl/Qc=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "client_7",
+      "first_name": "Testing Again",
+      "last_name": "",
+      "email": "ttchemvura@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-12-16T13:46:05.384Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$i0CGdqGu6FId$jq6q/FzOh6EUHV+76svnxWIEnq1dTdUDGabdYOKh/6E=",
+      "last_login": "2017-12-17T10:06:56.330Z",
+      "is_superuser": false,
+      "username": "client_8",
+      "first_name": "Aaron",
+      "last_name": "",
+      "email": "tino@tino1b2be.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-12-17T10:06:31.534Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "invoice_client.client",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "address": "Mutare",
+      "date": "2017-12-15T11:30:21.314Z",
+      "bill_date": "2017-12-15T15:51:51.680Z"
+    }
+  },
+  {
+    "model": "invoice_client.client",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "address": "Mutare",
+      "date": "2017-12-15T11:31:53.692Z",
+      "bill_date": "2017-12-15T15:51:51.680Z"
+    }
+  },
+  {
+    "model": "invoice_client.client",
+    "pk": 3,
+    "fields": {
+      "user": 4,
+      "address": "Mutare",
+      "date": "2017-12-15T11:33:20.687Z",
+      "bill_date": "2017-12-15T15:51:51.680Z"
+    }
+  },
+  {
+    "model": "invoice_client.client",
+    "pk": 8,
+    "fields": {
+      "user": 9,
+      "address": "Mutare",
+      "date": "2017-12-17T10:06:31.731Z",
+      "bill_date": "2017-12-17T10:06:31.732Z"
+    }
+  }
+]
