@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
 from django.urls import reverse
 from django.views import generic
 from django.views.generic import ListView
@@ -13,6 +12,15 @@ from django.views.generic import ListView
 from InvoiceNow.settings import EMAIL_ORIGIN
 from invoice_admin.forms import NewClientForm, ChargeClientForm
 from invoice_client.models import Client, Work
+
+
+def email_login_details(email, password, username, client_name):
+    subject = 'Credentials for %s' % client_name
+    from_email = EMAIL_ORIGIN
+    text_content = 'Username: %s\nPassword: %s\n' % (username, password)
+    destination = [email, EMAIL_ORIGIN]
+    msg = EmailMultiAlternatives(subject, text_content, from_email, destination)
+    return msg.send()
 
 
 class AdminListView(LoginRequiredMixin, ListView):
@@ -63,18 +71,31 @@ class AdminClientView(LoginRequiredMixin, ListView):
         return context
 
     def get(self, *args, **kwargs):
+        client = None
         if not self.request.user.is_staff:
-            return redirect(reverse('client'))
+            # client logged in
+            if int(self.kwargs.get('id', 0)) == 0:
+                try:
+                    client = Client.objects.get(user=self.request.user)
+                    if client.user == self.request.user:
+                        return redirect(reverse('client_view', kwargs={'id': client.id}))
+                    else:
+                        # nto allowed
+                        return render(self.request, 'error_403.html', {'user': self.request.user, 'client': client}, status=403)
+                except ObjectDoesNotExist:
+                    # client does not exist
+                    return render(self.request, 'error_404.html', {'user': self.request.user, 'client': client}, status=404)
+            else:
+                pass
+        try:
+            client = Client.objects.get(id=int(self.kwargs.get('id', 0)))
+            if client.user != self.request.user:
+                return render(self.request, 'error_403.html', {'user': self.request.user, 'client': client}, status=403)
+        except ObjectDoesNotExist:
+            return render(self.request, 'error_404.html', {'user': self.request.user, 'client': client}, status=404)
+
+        # admin logged in
         return super(AdminClientView, self).get(*args, **kwargs)
-
-
-def email_login_details(email, password, username, client_name):
-    subject = 'Credentials for %s' % client_name
-    from_email = EMAIL_ORIGIN
-    text_content = 'Username: %s\nPassword: %s\n' % (username, password)
-    destination = [email, EMAIL_ORIGIN]
-    msg = EmailMultiAlternatives(subject, text_content, from_email, destination)
-    return msg.send()
 
 
 class AdminCreateClientView(LoginRequiredMixin, generic.View):
@@ -165,7 +186,7 @@ class AdminChargeClientView(LoginRequiredMixin, generic.View):
                 },
             )
 
-        client = Client.objects.get(id=int(form.cleaned_data['client_id']))
+        client = Client.objects.get(user__first_name=form.cleaned_data["client_name"])
         work = Work(
             client=client,
             description=form.cleaned_data['description'],
@@ -173,7 +194,7 @@ class AdminChargeClientView(LoginRequiredMixin, generic.View):
         )
         work.save()
 
-        return redirect(reverse('admin_client', kwargs={'id': client.id}))
+        return redirect(reverse('client_view', kwargs={'id': client.id}))
 
 
 class AdminDeleteClientView(LoginRequiredMixin, generic.View):
