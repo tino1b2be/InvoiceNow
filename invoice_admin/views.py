@@ -89,7 +89,7 @@ class AdminClientView(LoginRequiredMixin, ListView):
                 pass
         try:
             client = Client.objects.get(id=int(self.kwargs.get('id', 0)))
-            if client.user != self.request.user:
+            if client.user != self.request.user and not self.request.user.is_staff:
                 return render(self.request, 'error_403.html', {'user': self.request.user, 'client': client}, status=403)
         except ObjectDoesNotExist:
             return render(self.request, 'error_404.html', {'user': self.request.user, 'client': client}, status=404)
