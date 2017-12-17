@@ -48,7 +48,7 @@
                     <td>{{ work.id }}</td>
                     <td>{{ work.date }}</td>
                     <td>{{ work.description }}</td>
-                    <td>{{ work.fee }}</td>
+                    <td>{{ work.fee|floatformat:2 }}</td>
                 </tr>
             {% endfor %}
             </tbody>
