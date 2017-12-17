@@ -44,3 +44,12 @@ class ChargeClientForm(forms.Form):
             Submit('save_changes', 'Charge Client', css_class="btn btn-primary"),
         )
     )
+
+    def __init__(self, *args, **kwargs):
+        super(ChargeClientForm, self).__init__(*args, **kwargs)
+        names = Client.objects.values_list('user__first_name')
+        client_names = []
+        for name in names:
+            client_names.append((name[0], name[0]))
+
+        self.fields['client_name'] = forms.ChoiceField(choices=client_names)
