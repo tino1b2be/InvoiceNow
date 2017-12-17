@@ -1,16 +1,13 @@
 from datetime import datetime
 
-from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.urls import reverse
 from django.views import generic
-from django.core.mail import send_mail
 
-from InvoiceNow.settings import EMAIL_ORIGIN, I_HOST
+from InvoiceNow.settings import EMAIL_ORIGIN
 from invoice_client.models import Client, Work
 
 
@@ -38,7 +35,7 @@ def get_invoice(request, pk, email=False):
         'due_date': datetime.fromtimestamp(client.bill_date.timestamp() + 2592000)
     }
 
-    return render(request, 'invoice_pdf_template.html', template_data)
+    return render(request, 'invoice_pdf_template.html', template_data, )
 
 
 class PrintInvoiceView(LoginRequiredMixin, generic.View):
@@ -89,6 +86,6 @@ class EmailInvoiceView(LoginRequiredMixin, generic.View):
         email = msg.send()
 
         if email > 0:
-            return render(request, 'sent_email.html')
+            return render(request, 'sent_email.html', {'user': request.user, 'client': client})
         else:
-            return render(request, 'email_failed.html')
+            return render(request, 'email_failed.html', {'user': request.user, 'client': client})
