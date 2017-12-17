@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'home',
     'invoice_admin',
     'invoice_client',
 ]
@@ -139,3 +138,7 @@ EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', True)
 EMAIL_ORIGIN = os.environ.get('EMAIL_ORIGIN', 'tino@tino.com')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 I_HOST = os.environ.get('I_HOST', '0.0.0.0:8000')
+
+FIXTURE_DIRS = (
+    'fixtures',
+)
