@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h1>Admin Panel</h1>
+    <h1 style="text-align: center">Admin Panel</h1>
     <section class="jumbotron" style="background-color: transparent">
 
         <a href="{% url 'admin_create' %}" class="btn btn-primary btn-lg btn-block" role="button" >Create Client</a>
         <a href="{% url 'admin_charge' %}" class="btn btn-secondary btn-lg btn-block" role="button" >Charge Client</a>
 
     </section> {# end of admin buttons section #}
-    <h2>Clients</h2>
+    <h2 style="text-align: center">Clients</h2>
+    <br>
     <div class="table-responsive">
 
         <table class="table table-bordered">
