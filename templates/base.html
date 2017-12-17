@@ -39,11 +39,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'admin' %}">Admin</a>
             </li>
-              {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'client_view' client.id %}">My Invoice</a>
-            </li>
-          {% endif %}
+              {% elif user.is_authenticated and client%}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'client_view' client.id %}">My Details</a>
+                </li>
+              {% endif %}
 
               {% if user.is_authenticated %}
             <li class="nav-item">
@@ -74,7 +74,7 @@
 <!-- FOOTER -->
 <footer class="container">
     <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2017 InvoiceNow Developed by <a href="#">Tinotenda Chemvura</a></p>
+    <p>&copy; 2017 InvoiceNow Developed by <a href="https://tino1b2be.com/profile/">Tinotenda Chemvura</a></p>
 </footer>
 
 

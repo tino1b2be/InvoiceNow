@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %}Client Details{% endblock %}
 {% block body %}
 
     <section class="jumbotron" style="background-color: transparent">
@@ -17,8 +17,8 @@
 {#                <a href="{% url 'admin_charge'%}?id={{ client.id }}" class="btn btn-sm btn-primary">Charge Client</a>#}
 {#            </p>#}
             <p class="lead">
-                <a href="{% url 'print_invoice' client.id %}" class="btn btn-sm btn-primary">Print Invoice</a>
-                <a href="{% url 'email_invoice' client.id %}" class="btn btn-sm btn-primary">Email Invoice</a>
+                <a href="{% url 'print_invoice' client.id %}" class="btn btn-primary btn-sm">Print Invoice</a>
+                <a href="{% url 'email_invoice' client.id %}" class="btn btn-primary btn-sm">Email Invoice</a>
             </p>
             {% if user.is_staff %}
             <p class="lead">
@@ -29,26 +29,26 @@
 
     </section> {# end of admin buttons section #}
 
-    <h2>Work Done for Client</h2>
-
+    <h2 style="text-align: center">Work Done for Client</h2>
+    <br>
     <div class="table-responsive">
 
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="width:100%">
             <thead>
             <tr>
-                <th>Work ID</th>
-                <th>Description</th>
-                <th>Cost</th>
-                <th>Date</th>
+                <th style="width:10%">Work ID</th>
+                <th style="width:30%">Date</th>
+                <th style="width:45%">Description</th>
+                <th style="width:15%">Cost</th>
             </tr>
             </thead>
             <tbody>
             {% for work in works %}
                 <tr>
                     <td>{{ work.id }}</td>
+                    <td>{{ work.date }}</td>
                     <td>{{ work.description }}</td>
                     <td>{{ work.fee }}</td>
-                    <td>{{ work.date }}</td>
                 </tr>
             {% endfor %}
             </tbody>

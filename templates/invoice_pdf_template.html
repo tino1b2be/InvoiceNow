@@ -3,6 +3,8 @@
     <meta charset="utf-8">
     <title>Invoice</title>
     {% load static %}
+    <!-- Bootstrap core CSS -->
+
     <link rel="stylesheet" href="{% static 'css/invoice.css' %}">
     <link rel="license" href="https://www.opensource.org/licenses/mit-license/">
     {#		<script src="{% static 'js/invoice.js' %}"></script>#}
@@ -44,12 +46,13 @@
             <td><span id="prefix">$</span><span>{{ amount_due|floatformat:2 }}</span></td>
         </tr>
     </table>
-    <table class="inventory">
+    <table class="inventory" style="width:100%">
         <thead>
         <tr>
-            <th>Work ID</th>
-            <th>Description</th>
-            <th>Fee</th>
+            <th style="width:10%">Work ID</th>
+            <th style="width:25%">Date</th>
+            <th style="width:45%">Description</th>
+            <th style="width:20%">Fee</th>
         </tr>
         </thead>
         <tbody>
@@ -57,6 +60,7 @@
         {% for work in works %}
             <tr>
                 <td>{{ work.id }}</td>
+                <td>{{ work.date }}</td>
                 <td>{{ work.description }}</td>
                 <td><span data-prefix>$</span>{{ work.fee|floatformat:2 }}</td>
             </tr>
@@ -70,7 +74,7 @@
             <td><span data-prefix>$</span><span>{{ total|floatformat:2 }}</span></td>
         </tr>
         <tr>
-            <th>Tax</th>
+            <th>Tax (%15)</th>
             <td><span data-prefix>$</span>{{ tax|floatformat:2 }}</td>
         </tr>
         <tr>
